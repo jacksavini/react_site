@@ -7,7 +7,7 @@ module.exports = function(app) {
     '/api',
     createProxyMiddleware({
       target: backendUrl,
-      changeOrigin: true,
+      changeOrigin: true
     })
   );
 };
