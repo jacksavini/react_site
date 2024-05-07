@@ -2,8 +2,8 @@ import Rainbow from "./rainbow.js";
 
 function Taskbar() {
     return (
-        <div style={{ width: "80%", marginLeft: "10%" }}>
-        <hr style = {{width: "100%"}}></hr>
+        <div>
+        <hr></hr>
         <div className="center navBar">
             <Rainbow
             type="link"

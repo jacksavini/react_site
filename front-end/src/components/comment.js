@@ -1,11 +1,14 @@
 import React from "react";
 
 
-function SingleComment({index, name, text}) {
+function SingleComment({name, text}) {
     return(
-        <div key={index} style={{  border: "1px solid white" }}>
-            <h1>{name}</h1>
-            <p>{text}</p>
+        <div>
+        <div style={{  border: "1px solid white" }} className="comment">
+            <h2 style={{marginLeft: "20px"}}>{name}</h2>
+            <p style={{marginLeft: "20px", fontSize: "20px"}}>{text}</p>
+        </div>
+        <br></br>
         </div>
     );
 

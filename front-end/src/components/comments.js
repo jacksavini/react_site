@@ -8,7 +8,7 @@ function Comments() {
     useEffect(() => {
         axios.get('/api/comments')
             .then(response => {
-                setData(response.data);
+                setData(response.data.reverse());
                 console.log(response)
             })
             .catch(error => {
@@ -18,12 +18,13 @@ function Comments() {
     }, []);
 
     return (
-        <div>
+        <div className="center">
             <h1>Comments</h1>
+            <br></br>
 
             {data.map((item, i) => (
                 <SingleComment
-                    index={i}
+                    key={i}
                     name={item.name}
                     text={item.text}
                 />

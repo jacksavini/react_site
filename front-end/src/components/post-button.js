@@ -47,16 +47,16 @@ function PostButton() {
         <form onSubmit={handleSubmit}>
           {/* Input field for name */}
           <label>
-            Name:
+            Name  .
             <input type="text" value={name} onChange={handleNameChange} />
           </label>
-          <br />
+          <br /><br />
           {/* Input field for email */}
           <label>
-            Text:
+            Text  .
             <input type="text" value={text} onChange={handleTextChange} />
           </label>
-          <br />
+          <br /><br />
           {/* Submit button */}
           <button type="submit">Submit</button>
         </form>
