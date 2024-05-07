@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import SingleComment from "./comment.js"
 
 function Comments() {
     const [data, setData] = useState([])
 
     useEffect(() => {
-        axios.get('/api/products')
+        axios.get('/api/comments')
             .then(response => {
                 setData(response.data);
                 console.log(response)
@@ -18,12 +19,16 @@ function Comments() {
 
     return (
         <div>
-            <h1>Data from Database</h1>
-            <p>
-                {data.map(item => (
-                    <li key={item.id}>{item.name}</li>
-                ))}
-            </p>
+            <h1>Comments</h1>
+
+            {data.map((item, i) => (
+                <SingleComment
+                    index={i}
+                    name={item.name}
+                    text={item.text}
+                />
+            ))}
+
         </div>
     )
 }
