@@ -1,1 +1,16 @@
 front-end/node_modules/.cache
+
+.env
+*.log
+.cache/
+
+build/
+dist/
+
+node_modules/
+
+.vscode/
+.idea/
+
+.DS_Store
+Thumbs.db
