@@ -19,7 +19,6 @@ function Comments() {
 
     return (
         <div className="center">
-            <h1>Comments</h1>
             <br></br>
 
             {data.map((item, i) => (

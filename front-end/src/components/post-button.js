@@ -20,7 +20,7 @@ function PostButton() {
         // Construct the comment object
         const comment = { name, text, likes, dislikes };
         
-        if(name == "" || text == ""){
+        if(name === "" || text === ""){
             return
         }
 
@@ -47,13 +47,13 @@ function PostButton() {
         <form onSubmit={handleSubmit}>
           {/* Input field for name */}
           <label>
-            Name  .
+            Name: 
             <input type="text" value={name} onChange={handleNameChange} />
           </label>
           <br /><br />
           {/* Input field for email */}
           <label>
-            Text  .
+            Comment: 
             <input type="text" value={text} onChange={handleTextChange} />
           </label>
           <br /><br />

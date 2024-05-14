@@ -5,7 +5,7 @@ function Title() {
       <div className="center">
       <Rainbow
           type="title"
-          refLink = "index.html"
+          refLink = "home"
           text = "JackSavini.com"
         />
         <br></br>
