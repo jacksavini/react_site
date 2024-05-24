@@ -1,11 +1,15 @@
 const express = require("express");
 const mysql = require("mysql");
-
 const app = express();
+
 const PORT = process.env.PORT || 5002;
 
 // Middleware to parse JSON bodies
-app.use(express.json());
+app.use(express.static(path.join(__dirname, '../front-end/build')));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../front-end/build', 'index.html'));
+});
 
 // Middleware to parse URL-encoded form data
 app.use(express.urlencoded({ extended: true }));
