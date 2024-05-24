@@ -1,0 +1,25 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - cd back-end
+        - node server.js &
+        - cd ..
+    build:
+      commands:
+        - cd front-end
+        - npm install
+        - npm start
+  artifacts:
+    baseDirectory: front-end/build
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - front-end/node_modules/**/*
+      - back-end/node_modules/**/*
+env:
+  variables:
+    BACKEND_URL: 'http://localhost:3000'
+    NODE_ENV: 'production'
