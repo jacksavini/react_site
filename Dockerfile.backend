@@ -1,0 +1,17 @@
+# Use the official Node.js image as base for backend
+FROM node:14-alpine
+
+# Set working directory for backend
+WORKDIR /app/back-end
+
+# Copy backend application files
+COPY back-end/ .
+
+# Install backend dependencies
+RUN npm install
+
+# Expose port if required
+EXPOSE 5002
+
+# Command to start the backend server
+CMD ["node", "server.js"]

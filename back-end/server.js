@@ -4,15 +4,9 @@ const app = express();
 
 const PORT = process.env.PORT || 5002;
 
-// Middleware to parse JSON bodies
-app.use(express.static(path.join(__dirname, '../front-end/build')));
-
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../front-end/build', 'index.html'));
-});
-
 // Middleware to parse URL-encoded form data
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // Create a connection to the MySQL server
 const connection = mysql.createPool({
@@ -23,38 +17,53 @@ const connection = mysql.createPool({
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0
-})
+});
 
+// GET endpoint to fetch comments
 app.get("/api/comments", (req, res) => {
     connection.query("SELECT * FROM comments", (error, results) => {
         if (error) {
-            console.error("Error fetching products from database:", error);
-            res.status(500).json({ error: "Error fetching products from database" });
+            console.error("Error fetching comments from database:", error);
+            res.status(500).json({ error: "Error fetching comments from database", details: error.message });
             return;
         }
         res.json(results);
     });
 });
 
+// POST endpoint to insert a new comment
 app.post("/api/post", (req, res) => {
     const { name, text, likes, dislikes } = req.body;
 
+    // Validate the input
+    if (!name || !text || typeof likes !== 'number' || typeof dislikes !== 'number') {
+        res.status(400).json({ error: "Invalid input data" });
+        return;
+    }
+
     // Insert the comment into the database
     connection.query(
-        "INSERT INTO `comments` (`name`, `text`, `likes`, `dislikes`) VALUES (?, ?, ?, ?)",
+        "INSERT INTO comments (name, text, likes, dislikes) VALUES (?, ?, ?, ?)",
         [name, text, likes, dislikes],
         (error, results) => {
             if (error) {
                 console.error("Error inserting comment into database:", error);
-                res.status(500).json({ error: "Error inserting comment into database" });
+                res.status(500).json({ error: "Error inserting comment into database", details: error.message });
                 return;
             }
             // Return the inserted comment data
-            res.json({ message: "Comment inserted successfully", comment: results });
+            res.json({ message: "Comment inserted successfully", comment: { id: results.insertId, name, text, likes, dislikes } });
         }
     );
 });
 
+// Catch-all error handler for unhandled errors
+app.use((err, req, res, next) => {
+    console.error("Unhandled error:", err);
+    res.status(500).json({ error: "Internal Server Error", details: err.message });
+});
+
+// Start the server
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
