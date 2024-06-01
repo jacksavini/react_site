@@ -1,12 +1,17 @@
 const express = require("express");
 const mysql = require("mysql");
+const path = require("path");
 const app = express();
+const cors = require("cors");
 
 const PORT = process.env.PORT || 5002;
 
 // Middleware to parse URL-encoded form data
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors({
+    origin: "http://www.jacksavini.com"
+}));
 
 // Create a connection to the MySQL server
 const connection = mysql.createPool({
@@ -57,13 +62,17 @@ app.post("/api/post", (req, res) => {
     );
 });
 
-// Catch-all error handler for unhandled errors
-app.use((err, req, res, next) => {
-    console.error("Unhandled error:", err);
-    res.status(500).json({ error: "Internal Server Error", details: err.message });
-});
+app.use(express.static(path.join(__dirname, "front-end/build")));
 
-// Start the server
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "/../front-end/build", "index.html"))
+})
+
+app.use((err, req, res, next) => {
+    console.error("Unhandled error:", err)
+    res.status(500).json({ error: "Internal server error", details: err.message })
+})
+
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
-});
+})

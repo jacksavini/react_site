@@ -11,28 +11,28 @@ function Taskbar() {
             <div className="center navBar">
                 <Rainbow
                 type="link"
-                refLink = "aboutMe"
+                refLink = "/aboutMe"
                 text = "About Me"
                 width = "195px"
                 />
     
                 <Rainbow
                 type="link"
-                refLink = "blog"
+                refLink = "/blog"
                 text = "Blog"
                 width = "85px"
                 />
     
                 <Rainbow
                 type="link"
-                refLink = "projects"
+                refLink = "/projects"
                 text = "Projects"
                 width = "160px"
                 />
     
                 <Rainbow
                 type="link"
-                refLink = "career"
+                refLink = "/career"
                 text = "Career"
                 width = "125px"
                 />
@@ -49,14 +49,14 @@ function Taskbar() {
             <div className="center navBar">
                 <Rainbow
                 type="link"
-                refLink = "aboutMe"
+                refLink = "/aboutMe"
                 text = "About Me"
                 width = "195px"
                 />
     
                 <Rainbow
                 type="link"
-                refLink = "blog"
+                refLink = "/blog"
                 text = "Blog"
                 width = "85px"
                 />
@@ -65,14 +65,14 @@ function Taskbar() {
             <div className="center navBar">
                 <Rainbow
                 type="link"
-                refLink = "projects"
+                refLink = "/projects"
                 text = "Projects"
                 width = "160px"
                 />
     
                 <Rainbow
                 type="link"
-                refLink = "career"
+                refLink = "/career"
                 text = "Career"
                 width = "125px"
                 />

@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "heroku": "^8.11.5"
+    "cors": "^2.8.5"
   }
 }

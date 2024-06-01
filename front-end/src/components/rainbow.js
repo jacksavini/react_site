@@ -1,19 +1,20 @@
 import React, { } from "react";
+import { Link } from "react-router-dom";
 
 function Rainbow({text, refLink, type, width}) {
     return(
       <div className={`isolate ${type}s`} style={{width}}>
-        <a href={refLink} className={`${type} rainbow blue`}>
+        <Link to={refLink} className={`${type} rainbow blue`}>
           {text}
-        </a>
+        </Link>
   
-        <a href={refLink} className={`${type} rainbow green`}>
+        <Link to={refLink} className={`${type} rainbow green`}>
           {text}
-        </a>
+        </Link>
   
-        <a href={refLink} className={`${type} rainbow red`}>
+        <Link to={refLink} className={`${type} rainbow red`}>
           {text}
-        </a>
+        </Link>
       </div>
     );
   }

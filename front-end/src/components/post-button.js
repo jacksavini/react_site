@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import url from "./url.js"
 
 function PostButton() {
 
@@ -25,7 +26,7 @@ function PostButton() {
         }
 
         // Make a POST request to the server
-        fetch("/api/post", {
+        fetch(url + "/api/post", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
